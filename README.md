@@ -22,4 +22,17 @@ Our code files fall into two categories:
   * <a href="https://github.com/britcbish/gwu-big-data/blob/master/Amazon%20Reviews%20-%20Model%20Kitchen.ipynb" rel = "nofollow">Kitchen Model</a>
 
 ## Methods:
+* Data Cleaning and Preparation:
+  We chose to create several new variables to better understand our data:
+   * Review polarity: using the textblob package we attached sentiment polarity to the headline and body portions of each review
+   * Review length: the length of each review headline and body
+   * helpful_ratio: a calculated variable of the number of helpful votes over the total number of votes a review received
+   * helpful?: a binary variable indicating that a review is helpful if the helpful_ratio > 0.75
+  This last variable is what we chose to model as we wanted to see if we could predict if a review would be helpful given our other input variables.
+ * Tools:
+  We used Spark to analyze the dataset and to build our models.
+ * Modeling:
+  To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary. Initially, we attempted to model our entire dataset but we found we were unable to calculate our model statistics in a reasonable timeframe (under 8 hours.) After we chose to use the partitions in the dataset to approach categories separately, we formed a couple of hypothesis upon exploring the Books, Electronics, and Kitchen product categories. We thought that perhaps people interact with Books a little differently than they might with Electronics and Kitchen products.
+  
+## Results/Conclusions:
 
