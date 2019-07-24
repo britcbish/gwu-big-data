@@ -5,7 +5,7 @@ This repository contains project work for the Summer 2019 course at George Washi
 Archit Manuja, Anuj Patel, and Brittany Bishop
 
 ## Executive Summary:
-Over the course of the past few weeks our team explored Amazon's Customer Reviews Dataset. Our initial goals included visualizing variance in the number of reviews by product category, attaching sentiment to the reviews, and seeing if we could predict whether or not a review would be helpful based on the variables available. Using Spark on Amazon EMR to handle the data and conduct analysis, we were able to make progress towards each of these goals. 
+Over the course of the past few weeks our team explored Amazon's Customer Reviews Dataset. Our initial goals included visualizing variance in the number of reviews by product category, attaching sentiment to the reviews, and seeing if we could predict whether or not a review would be helpful. Using Spark on Amazon EMR to handle the data and conduct analysis, we were able to make progress towards each of these goals. 
 
 ## Introduction:
 We chose to explore the Amazon Customer Reviews Dataset which contains 130M+ customer reviews and associated metadata from 1995 until 2015. We worked with the dataset that is in <a href="s3://amazon-reviews-pds/parquet/" rel="nofollow">Parquet format</a> although it is also available in <a href="s3://amazon-reviews-pds/tsv/" rel="nofollow">Tab Separated Value format</a>. Even upon varying our cluster specifications, we encountered memory issues when attempting to evaluate model statistics for the full dataset and so  we chose to operate within the dataset partitions. Our work focused on the following product categories: books, kitchen, and electronics.
@@ -32,7 +32,7 @@ Our code files fall into two categories:
   This last variable is what we chose to model as we wanted to see if we could predict if a review would be helpful given our other input variables.
  * Tools:
  
-  We used Spark to analyze the dataset and to build our models.
+   We used Spark to analyze the dataset and to build our models.
  * Modeling:
    
    To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary.
@@ -71,5 +71,7 @@ Our models also produced interesting results. The model metrics themselves were 
 
 We found it really interesting that our model predicting the helpfulness of Book reviews performed markedly worse than either of the models for Electronics or Kitchen did. This tracked well with our hypothesis that perhaps customers are looking for something in their book reviews that they may not expect or look for in electronics or kitchen item reviews. However, our exploration of the product categories also gives merit to other theories; it is possible that difference in the size of the datasets played a role, or that the difference in the verified_purchases distributions contributed to the Books model's relatively poor performance.
 
+## Future Work:
 
+The dataset that we chose to work with is very rich and offers many opportunities for different paths of analysis. If we were to start again, we may have chosen to go down a more text analysis focused path, or we could have chosen to try to break the dataset along a different variable as opposed to using product category. In an effort to become more comfortable with datasets of this size, our initial objectives were focused on tasks that are more simple to execute in small data environments. We were able to attach sentiment to the reviews, to understand some of the surface level differences between the product categories that we explored, and to successfully model the helpfulness of the reviews across those same product categories. With many of those objectives completed or touched on, we think there would be room to expand on the modeling techniques we used and the feature engineering that we did. Another point of future work would be to attempt tuning our clusters to better handle modeling on the complete dataset as this was something that proved to be a challenge for us throughout.
  
