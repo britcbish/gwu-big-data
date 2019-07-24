@@ -32,16 +32,17 @@ Our code files fall into two categories:
  * Tools:
   We used Spark to analyze the dataset and to build our models.
  * Modeling:
-  To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary. Initially, we attempted to model our entire dataset but we found we were unable to calculate our model statistics in a reasonable timeframe (under 8 hours.) One tactic we employed to improve the speed of our modeling was to filter our dataset to reviews that received more than 100 votes regarding their helpfulness. The next step we took was to leverage the partitions in the dataset and approach product categories separately. We then formed a couple of hypothesis upon exploring the Books, Electronics, and Kitchen product categories. We thought that perhaps people interact with reviews for Books a little differently than they might with Electronics and Kitchen products. Based on our personal experiences, we consider books more personal purchases than electronics or kitchen items and so we different variables might drive helpfulness. We used the same input variables across each product category for modeling purposes:
-  * star_rating
-  * total_votes
-  * headline_polarity
-  * body_polarity
-  * headline_length
-  * body_length
-  * year_bkt
-  * vine
-  * verified_purchase
+   
+   To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary. Initially, we attempted to model our entire dataset but we found we were unable to calculate our model statistics in a reasonable timeframe (under 8 hours.) One tactic we employed to improve the speed of our modeling was to filter our dataset to reviews that received more than 100 votes regarding their helpfulness. The next step we took was to leverage the partitions in the dataset and approach product categories separately. We then formed a couple of hypothesis upon exploring the Books, Electronics, and Kitchen product categories. We thought that perhaps people interact with reviews for Books a little differently than they might with Electronics and Kitchen products. Based on our personal experiences, we consider books more personal purchases than electronics or kitchen items and so we different variables might drive helpfulness. We used the same input variables across each product category for modeling purposes:
+   * star_rating
+   * total_votes
+   * headline_polarity
+   * body_polarity
+   * headline_length
+   * body_length
+   * year_bkt
+   * vine
+   * verified_purchase
   
 ## Results/Conclusions:
 Our exploration of the data yielded some points of interest:
