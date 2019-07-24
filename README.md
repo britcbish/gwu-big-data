@@ -23,6 +23,7 @@ Our code files fall into two categories:
 
 ## Methods:
 * Data Cleaning and Preparation:
+  
   We chose to create several new variables to better understand our data:
    * Review polarity: using the textblob package we attached sentiment polarity to the headline and body portions of each review
    * Review length: the length of each review headline and body
@@ -30,10 +31,17 @@ Our code files fall into two categories:
    * helpful?: a binary variable indicating that a review is helpful if the helpful_ratio > 0.75
   This last variable is what we chose to model as we wanted to see if we could predict if a review would be helpful given our other input variables.
  * Tools:
+ 
   We used Spark to analyze the dataset and to build our models.
  * Modeling:
    
-   To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary. Initially, we attempted to model our entire dataset but we found we were unable to calculate our model statistics in a reasonable timeframe (under 8 hours.) One tactic we employed to improve the speed of our modeling was to filter our dataset to reviews that received more than 100 votes regarding their helpfulness. The next step we took was to leverage the partitions in the dataset and approach product categories separately. We then formed a couple of hypothesis upon exploring the Books, Electronics, and Kitchen product categories. We thought that perhaps people interact with reviews for Books a little differently than they might with Electronics and Kitchen products. Based on our personal experiences, we consider books more personal purchases than electronics or kitchen items and so we different variables might drive helpfulness. We used the same input variables across each product category for modeling purposes:
+   To model predictions for the "helpful?" variable we used logistic regression - we did this because the target variable is binary.
+   
+   Initially, we attempted to model our entire dataset but we found we were unable to calculate our model statistics in a reasonable timeframe (under 8 hours.) One tactic we employed to improve the speed of our modeling was to filter our dataset to reviews that received more than 100 votes regarding their helpfulness. The next step we took was to leverage the partitions in the dataset and approach product categories separately. 
+   
+   We then formed a couple of hypothesis upon exploring the Books, Electronics, and Kitchen product categories. We thought that perhaps people interact with reviews for Books a little differently than they might with Electronics and Kitchen products. Based on our personal experiences, we consider books more personal purchases than electronics or kitchen items and so we thought different variables might drive the helpfulness of a review. 
+   
+   We used the same input variables across each product category for modeling purposes:
    * star_rating
    * total_votes
    * headline_polarity
@@ -43,6 +51,8 @@ Our code files fall into two categories:
    * year_bkt
    * vine
    * verified_purchase
+   
+   Lastly, we split each product category dataset into training (70%) and testing (30%) datasets. This way we had a selection of the dataset to cleanly understand the performance of each of our models. 
   
 ## Results/Conclusions:
 Our exploration of the data yielded some points of interest:
@@ -59,7 +69,7 @@ Our models also produced interesting results. The model metrics themselves were 
 | Electronics | 0.90 | 0.86 | 0.94 |
 | Kitchen | 0.96 | 0.94 | 0.97 |
 
-We found it really interesting that our model predicting the helpfulness of Book reviews performed markedly worse than either model for Electronics or Kitchen did. It tracked well with our hypothesis that perhaps customers are looking for something in their book reviews that they may not expect or look for in electronics or kitchen item reviews. However, our exploration of the product categories allows gives merit to other theories; it is possible that difference in the size of the datasets played a role, or that the difference in the verified_purchases distributions contributed to the Books model's relatively poor performance.
+We found it really interesting that our model predicting the helpfulness of Book reviews performed markedly worse than either of the models for Electronics or Kitchen did. This tracked well with our hypothesis that perhaps customers are looking for something in their book reviews that they may not expect or look for in electronics or kitchen item reviews. However, our exploration of the product categories also gives merit to other theories; it is possible that difference in the size of the datasets played a role, or that the difference in the verified_purchases distributions contributed to the Books model's relatively poor performance.
 
 
  
